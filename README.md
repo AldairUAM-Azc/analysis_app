@@ -1,8 +1,8 @@
-# :earth_americas: GDP dashboard template
+# 👩‍🔬🧑‍🔬 Analisis de Investigadores
 
-A simple Streamlit app showing the GDP of different countries in the world.
+Una app simple de Streamlit para mostrar y analizar las citas de algunos investigadores.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gdp-dashboard-template.streamlit.app/)
+[![Open in Streamlit](https://analysisapp-2fmrpwzgxsg8ridbqcmrvh.streamlit.app/)
 
 ### How to run it on your own machine
 
@@ -15,5 +15,5 @@ A simple Streamlit app showing the GDP of different countries in the world.
 2. Run the app
 
    ```
-   $ streamlit run streamlit_app.py
+   $ streamlit run Inicio.py
    ```
