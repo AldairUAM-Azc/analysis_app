@@ -3,18 +3,27 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import pandas as pd
 
+st.set_page_config(
+    page_title="Citaciones de Cada Autor",
+    page_icon="📄"
+)
 
 def get_min_max_years(df: pd.DataFrame) -> tuple[int, int]:
+    """
+    Returns a tuple with the min and max years found in the df.
+    """
     years_columns = [col for col in df.columns if col.isdigit()]
     if years_columns:
         min_year = int(min(years_columns))
         max_year = int(max(years_columns))
     return (min_year, max_year)
 
-# graficando
-
 
 def clean_df(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Returns a slim version of the full df. 
+    Only Title, Average per Year, all years, and Total Citations
+    """
     # Delete <i> tags from titles
     df['Title'] = df['Title'].str.replace('<i>', '').str.replace('</i>', '')
 
@@ -32,13 +41,16 @@ def clean_df(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
+    """
+    Plots the publications per year based on the range anio_inicio and anio_fin.
+    """
 
     # Filtrar las columnas de años
     years = [str(year) for year in range(anio_inicio, anio_fin + 1)]
 
    # Initialize a DataFrame to hold publications and citations for each year
-    publications = pd.Series(0, index=years)
-    citations_per_year = pd.Series(0, index=years)
+    publications = pd.Series(0, index=years, dtype='int64')
+    citations_per_year = pd.Series(0, index=years, dtype='float64')
 
     # Populate the publications and citations for the years present in the DataFrame
     for year in years:
@@ -55,8 +67,10 @@ def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
     ax1.bar(publications.index, publications.values,
             color='purple', alpha=0.5, label='Publications')
     ax1.set_xlabel('Year')
+    plt.xticks(rotation=90)
     ax1.set_ylabel('Publications', color='purple')
     ax1.tick_params(axis='y', labelcolor='purple')
+    
 
     # Crear otro eje Y para las citas
     ax2 = ax1.twinx()
@@ -71,17 +85,15 @@ def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
     return fig
 
 
-st.set_page_config(
-    page_title="Citaciones de Cada Autor",
-    page_icon="📄"
-)
-
+#---------------------------------------------------------------------------------------
+# START PAGE CONSTRUCTION
 st.header("Citaciones De Cada Autor")
 
 # Pick a researcher
 option = st.selectbox(
     "Selecciona un investigador: ",
-    st.session_state["dataframes"].keys()
+    st.session_state["dataframes"].keys(),
+    index=200
 )
 
 # Get dataframe of selected option
@@ -89,21 +101,16 @@ current_df = st.session_state['dataframes'][option]
 years_in_df = [int(year) for year in current_df.columns if year.isdigit()]
 min_year = min(years_in_df)-1
 max_year = max(years_in_df)
-# st.session_state["min_max_years"] = get_min_max_years(current_df)
-# min_max_years = st.session_state["min_max_years"]
 
 # Show dataframe table
 st.dataframe(clean_df(current_df))
 
 # Select range of plot
-# min_year = 1970
-# max_year = 2023
 anio_inicio, anio_fin = st.select_slider(
     'Select the range of years:',
     options=range(min_year, max_year + 1),
     value=(min_year, max_year)  # Default range
 )
-# st.slider("Elige un rango para graficar", value=min_max_years, min_value=min_max_years[0])
 
 # Show plot
 st.pyplot(build_plot(current_df, anio_inicio, anio_fin))
