@@ -2,7 +2,7 @@
 
 Una app simple de Streamlit para mostrar y analizar las citas de algunos investigadores.
 
-[![Open in Streamlit](https://analysisapp-2fmrpwzgxsg8ridbqcmrvh.streamlit.app/)
+[Miralo aqui](https://analysisapp-2fmrpwzgxsg8ridbqcmrvh.streamlit.app/)
 
 ### How to run it on your own machine
 
