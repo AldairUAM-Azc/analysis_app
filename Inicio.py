@@ -24,23 +24,8 @@ def compute_dataframes(folder_path: str) -> dict:
     dataframes = {}
     for file in txt_files:
         df = pd.read_csv(f"{folder_path}/{file}")
-
-        # Delete <i> tags from titles
-        df['Title'] = df['Title'].str.replace('<i>', '').str.replace('</i>', '')
-
-        # Get columns from 2000 to 2023
-        years_to_keep = [str(year) for year in range(2000, 2024)]
-
-        # columns_to_keep = ['Title', 'Average per Year', 'Total Citations'] + years_to_keep
-        new_df = pd.DataFrame()
-        new_df["Titulos de publicaciones"] = df[['Title']]
-        for year in years_to_keep:
-            if year in df.columns:
-                new_df[year] = df[year]
-        new_df['Promedio por Año'] = df['Average per Year']
-        new_df['Total de Citas'] = df['Total Citations']
         author = file.split('.')[0]
-        dataframes[author] = new_df
+        dataframes[author] = df
     return dataframes    
 
 # Compute researches dataframes in case they dont exist yet
