@@ -13,3 +13,5 @@ option = st.selectbox(
 )
 
 st.dataframe(st.session_state['dataframes'][option])
+
+st.markdown("Aqui iria una grafiquita, si tuviera una.")
