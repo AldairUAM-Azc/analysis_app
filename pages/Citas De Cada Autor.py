@@ -107,7 +107,7 @@ st.dataframe(clean_df(current_df))
 
 # Select range of plot
 anio_inicio, anio_fin = st.select_slider(
-    'Select the range of years:',
+    'Selecciona el rango de años a graficar:',
     options=range(min_year, max_year + 1),
     value=(min_year, max_year)  # Default range
 )
