@@ -80,7 +80,7 @@ def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
     #ax2.tick_params(axis='y', labelcolor='blue')
 
     # Título y leyenda
-    plt.title('Times Cited and Publications Over Time')
+    plt.title('Publicaciones En El Tiempo')
     fig.legend(loc='lower center', bbox_to_anchor=(0.5, -0.1), ncol=2)
     return fig
 
