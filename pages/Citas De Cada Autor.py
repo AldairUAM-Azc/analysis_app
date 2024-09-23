@@ -66,9 +66,9 @@ def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
     # Graficar el número de publicaciones como barras
     ax1.bar(publications.index, publications.values,
             color='purple', alpha=0.5, label='Publications')
-    ax1.set_xlabel('Year')
+    ax1.set_xlabel('Año')
     plt.xticks(rotation=90)
-    ax1.set_ylabel('Publications', color='purple')
+    ax1.set_ylabel('Publicaciones', color='purple')
     ax1.tick_params(axis='y', labelcolor='purple')
     
 
