@@ -7,13 +7,14 @@ import os
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='Analisis Investigadores',
-    page_icon='👩‍🔬', 
+    page_icon='👩‍🔬',
 )
 
 # ---------------------------------------------------------------------------
-# Load the data
+# Load citation dataframes
 
 folder_path = './datos_completos'
+
 
 def compute_dataframes(folder_path: str) -> dict:
     txt_files = []
@@ -26,12 +27,34 @@ def compute_dataframes(folder_path: str) -> dict:
         df = pd.read_csv(f"{folder_path}/{file}")
         author = file.split('.')[0]
         dataframes[author] = df
-    return dataframes    
+    return dataframes
+
 
 # Compute researches dataframes in case they dont exist yet
 if 'dataframes' not in st.session_state:
     st.session_state["dataframes"] = compute_dataframes(folder_path)
-    
+
+
+# -----------------------------------------------------------------------------------
+# Load patents dataframes
+patentes_path = './patentes.csv'
+df = pd.read_csv(patentes_path)
+df = df.sort_values(by="Inventor")
+
+if 'dataframe_patentes' not in st.session_state:
+    st.session_state['dataframe_patentes'] = df
+
+# -----------------------------------------------------------------------------------
+# Cargar solamente la informacion de las citas de los investigadores que tienen patentes
+
+inventors = st.session_state['dataframe_patentes'].Inventor.unique()
+
+if 'dataframes_analisis_patentes' not in st.session_state:
+    dataset_dict = {}
+    for inventor in inventors:
+        if inventor in st.session_state['dataframes']:
+            dataset_dict[inventor] = st.session_state['dataframes'][inventor]
+    st.session_state['dataframes_analisis_patentes'] = dataset_dict
 
 # -----------------------------------------------------------------------------
 # Draw the actual page
