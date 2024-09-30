@@ -38,7 +38,7 @@ if 'dataframes' not in st.session_state:
 patentes_path = './patentes.csv'
 df = pd.read_csv(patentes_path)
 df = df.sort_values(by="Inventor")
-
+df['Inventor']=df['Inventor'].apply(str. upper) 
 if 'dataframe_patentes' not in st.session_state:
     st.session_state['dataframe_patentes'] = df
 
