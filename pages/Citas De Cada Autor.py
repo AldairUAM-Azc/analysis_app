@@ -66,21 +66,21 @@ def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
     # Graficar el número de publicaciones como barras
     ax1.bar(publications.index, publications.values,
             color='purple', alpha=0.5, label='Publications')
-    ax1.set_xlabel('Year')
+    ax1.set_xlabel('Año')
     plt.xticks(rotation=90)
-    ax1.set_ylabel('Publications', color='purple')
+    ax1.set_ylabel('Publicaciones', color='purple')
     ax1.tick_params(axis='y', labelcolor='purple')
     
 
     # Crear otro eje Y para las citas
-    ax2 = ax1.twinx()
-    ax2.plot(citations_per_year.index, citations_per_year.values,
-             color='blue', label='Citations per Year', linewidth=2)
-    ax2.set_ylabel('Citations per Year', color='blue')
-    ax2.tick_params(axis='y', labelcolor='blue')
+    #ax2 = ax1.twinx()
+    #ax2.plot(citations_per_year.index, citations_per_year.values,
+    #         color='blue', label='Citations per Year', linewidth=2)
+    #ax2.set_ylabel('Citations per Year', color='blue')
+    #ax2.tick_params(axis='y', labelcolor='blue')
 
     # Título y leyenda
-    plt.title('Times Cited and Publications Over Time')
+    plt.title('Publicaciones En El Tiempo')
     fig.legend(loc='lower center', bbox_to_anchor=(0.5, -0.1), ncol=2)
     return fig
 
@@ -107,7 +107,7 @@ st.dataframe(clean_df(current_df))
 
 # Select range of plot
 anio_inicio, anio_fin = st.select_slider(
-    'Select the range of years:',
+    'Selecciona el rango de años a graficar:',
     options=range(min_year, max_year + 1),
     value=(min_year, max_year)  # Default range
 )
