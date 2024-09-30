@@ -59,16 +59,16 @@ def plot_patente_citas(df_patentes: pd.DataFrame, df_citas: pd.DataFrame, patent
 
         # Annotations
         ax.text(first_patent_date.year, max(citation_counts['Total Citations']) / 2, 
-                'Filing Date\n' + first_patent_date.date().isoformat(), 
+                'Fecha Patente\n' + first_patent_date.date().isoformat(), 
                 color='red', ha='center')
 
     # Titles and labels
-    ax.set_title(f'Total Citations for Publications (5 Years Before and After {first_patent_date.date()})')
-    ax.set_xlabel('Year')
-    ax.set_ylabel('Total Citations')
+    ax.set_title(f'Citas totales de publicaciones (5 años antes y después de {first_patent_date.date()})')
+    ax.set_xlabel('Año')
+    ax.set_ylabel('Citas Totales')
     ax.set_xticks(citation_counts['Year'])  # Set x-ticks to the years present in the data
     ax.grid(axis='y')
-    ax.legend()
+    ax.legend(["Fecha Patente", "Citas Totales"])
 
     # Return the figure
     return fig

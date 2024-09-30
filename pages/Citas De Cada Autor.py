@@ -73,11 +73,11 @@ def build_plot(df: pd.DataFrame, anio_inicio: int, anio_fin: int) -> Figure:
     
 
     # Crear otro eje Y para las citas
-    #ax2 = ax1.twinx()
-    #ax2.plot(citations_per_year.index, citations_per_year.values,
-    #         color='blue', label='Citations per Year', linewidth=2)
-    #ax2.set_ylabel('Citations per Year', color='blue')
-    #ax2.tick_params(axis='y', labelcolor='blue')
+    # ax2 = ax1.twinx()
+    # ax2.plot(citations_per_year.index, citations_per_year.values,
+    #          color='blue', label='Citations per Year', linewidth=2)
+    # ax2.set_ylabel('Citations per Year', color='blue')
+    # ax2.tick_params(axis='y', labelcolor='blue')
 
     # Título y leyenda
     plt.title('Publicaciones En El Tiempo')
