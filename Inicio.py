@@ -62,5 +62,10 @@ if 'dataframes_analisis_patentes' not in st.session_state:
 # 👩‍🔬 Analisis Investigadores 
 
 
+Integrantes:
+
+- Aldair Oswaldo Avalos Albino
+- Jesús Andrés Gallegos Martínez
+
 Tomamos datos de las citas y publicaciones de algunos investigadores del portal [WebOfScience](https://webofscience.uam.elogim.com/wos/woscc/citation-report/3f8ad5bf-9246-4248-9bf4-df6a92255f89-010a8b6d63).
 '''
